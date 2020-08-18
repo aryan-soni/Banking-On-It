@@ -1,15 +1,17 @@
-/*
+package src.BankingOnIt;/*
 
     NOTE: The sole purpose of this class is to supply methods.
     This program SHOULD NOT be run on its own.
 
 */
 
+import src.BankingOnIt.FileHandler;
+
 import javax.swing.*;
 import java.io.*;
 import java.awt.*;
 
-// The "NewCustomer" class.
+// The "src.BankingOnIt.NewCustomer" class.
 public class NewCustomer
 {
     public static void main (String[] args)
@@ -26,12 +28,12 @@ public class NewCustomer
 	double newBalance;
 
 	// render images
-	ImageIcon iconName = new ImageIcon ("name.png"); // image for name dialog
-	ImageIcon iconPhone = new ImageIcon ("phone.png"); // image for phone dialog
-	ImageIcon iconAddress = new ImageIcon ("address.png"); // image for address dialog
-	ImageIcon iconKey = new ImageIcon ("key.png"); // image for key dialog
-	ImageIcon iconBalance = new ImageIcon ("balance.png"); // image for balance dialog
-	ImageIcon iconError = new ImageIcon ("error.png"); // image for error dialog
+	ImageIcon iconName = new ImageIcon ("src/imgs/name.png"); // image for name dialog
+	ImageIcon iconPhone = new ImageIcon ("src/imgs/phone.png"); // image for phone dialog
+	ImageIcon iconAddress = new ImageIcon ("src/imgs/address.png"); // image for address dialog
+	ImageIcon iconKey = new ImageIcon ("src/imgs/key.png"); // image for key dialog
+	ImageIcon iconBalance = new ImageIcon ("src/imgs/balance.png"); // image for balance dialog
+	ImageIcon iconError = new ImageIcon ("src/imgs/error.png"); // image for error dialog
 
 	// use jLabels to output text on dialog boxes:
 	// label for name dialog
@@ -597,4 +599,4 @@ public class NewCustomer
 	return true; // return true if this statement is reached
 
     }
-} // NewCustomer class
+} // src.BankingOnIt.NewCustomer class

@@ -1,8 +1,14 @@
+package src.BankingOnIt;
+
+import src.BankingOnIt.Admin;
+import src.BankingOnIt.ExistingCustomer;
+import src.BankingOnIt.FileHandler;
+
 import javax.swing.*;
 import java.io.*;
 import java.awt.*;
 
-// The "Main" class.
+// The "src.BankingOnIt.Main" class.
 public class Main
 {
     public static void main (String[] args) throws IOException
@@ -39,7 +45,7 @@ public class Main
 	boolean populateArr = FileHandler.populate (count, names, phoneNums, addresses, accountKeys, balances);
 
 	String options[] = {"Customer", "Admin", "Help", "Exit"}; // options for option dialog
-	ImageIcon icon = new ImageIcon ("bank.png"); // image for first dialog
+	ImageIcon icon = new ImageIcon ("src/imgs/bank.png"); // image for first dialog
 
 	// use UIManager to change graphical settings for dialog boxes
 	UIManager UI = new UIManager ();
@@ -103,7 +109,7 @@ public class Main
 	// outline options for option dialog
 	String[] options = {"New Customer", "Existing Customer", "Back"};
 
-	ImageIcon icon = new ImageIcon ("customer.png"); // image for initial customer dialog
+	ImageIcon icon = new ImageIcon ("src/imgs/customer.png"); // image for initial customer dialog
 
 	// use jLabel to output text on dialog box
 	JLabel label = new JLabel ("Welcome to the Customer Hub! Please select whether you are a new or existing customer."
@@ -147,7 +153,7 @@ public class Main
     // method will run when admin is using program
     public static void admin (String names[], String phoneNums[], String addresses[], String accountKeys[], double balances[], Font defaultFont) throws IOException
     {
-	String password = Admin.collectPass (defaultFont); // call method from Admin class that collects the admin password
+	String password = Admin.collectPass (defaultFont); // call method from src.BankingOnIt.Admin class that collects the admin password
 
 	// if the user wishes to exit
 	if (password.equals ("Back123321"))
@@ -157,7 +163,7 @@ public class Main
 	// else - the password is correct
 	else
 	{
-	    // call method from Admin class that orchestrates the admin controls
+	    // call method from src.BankingOnIt.Admin class that orchestrates the admin controls
 	    Admin.adminControls (names, phoneNums, addresses, accountKeys, balances, defaultFont);
 	}
     }
@@ -167,7 +173,7 @@ public class Main
     public static void help (Font defaultFont)
     {
 	// set up image
-	ImageIcon icon = new ImageIcon ("help.png");
+	ImageIcon icon = new ImageIcon ("src/imgs/help.png");
 
 	// set up label - use html to format
 	JLabel label = new JLabel (
@@ -188,7 +194,7 @@ public class Main
     public static void exit (Font defaultFont)
     {
 	// set up image
-	ImageIcon icon = new ImageIcon ("thanks.png");
+	ImageIcon icon = new ImageIcon ("src/imgs/thanks.png");
 
 	// set up label - use html to format
 	JLabel label = new JLabel (
@@ -204,4 +210,4 @@ public class Main
 		);
 
     }
-} // Main class
+} // src.BankingOnIt.Main class

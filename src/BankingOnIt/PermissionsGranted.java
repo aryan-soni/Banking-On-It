@@ -1,16 +1,19 @@
-/*
+package src.BankingOnIt;/*
 
     NOTE: The sole purpose of this class is to supply methods.
     This program SHOULD NOT be run on its own.
 
 */
 
+import src.BankingOnIt.FileHandler;
+import src.BankingOnIt.NewCustomer;
+
 import java.text.*;
 import javax.swing.*;
 import java.io.*;
 import java.awt.*;
 
-// The "PermissionsGranted" class.
+// The "src.BankingOnIt.PermissionsGranted" class.
 public class PermissionsGranted
 {
     public static void main (String[] args)
@@ -32,7 +35,7 @@ public class PermissionsGranted
 	label.setFont (defaultFont); // set font to default font
 
 	String options[] = {"Deposit Money", "Withdraw Money", "View Account Details", "Change Phone Number", "Change Address", "Change Key", "Log-Out"}; // options
-	ImageIcon icon = new ImageIcon ("unlock.png"); // image for dialog
+	ImageIcon icon = new ImageIcon ("src/imgs/unlock.png"); // image for dialog
 
 	// prompt user to choose option - store response into var
 	int response = JOptionPane.showOptionDialog (
@@ -93,9 +96,9 @@ public class PermissionsGranted
     // method will prompt the user to edit their balance
     public static void editBalance (boolean toDeposit, int index, String names[], String phoneNums[], String addresses[], String accountKeys[], double balances[], Font defaultFont) throws IOException
     {
-	ImageIcon iconBalance = new ImageIcon ("balance.png"); // image for depositing/withdrawing
-	ImageIcon iconError = new ImageIcon ("error.png"); // image for error dialog
-	ImageIcon iconSuccess = new ImageIcon ("success.png"); // image for success dialog
+	ImageIcon iconBalance = new ImageIcon ("src/imgs/balance.png"); // image for depositing/withdrawing
+	ImageIcon iconError = new ImageIcon ("src/imgs/error.png"); // image for error dialog
+	ImageIcon iconSuccess = new ImageIcon ("src/imgs/success.png"); // image for success dialog
 
 	// label for deposit/withdrawal dialog - set as placeholder
 	JLabel label = new JLabel (
@@ -279,7 +282,7 @@ public class PermissionsGranted
     {
 	NumberFormat money = NumberFormat.getCurrencyInstance (); // will be used to format balance
 
-	ImageIcon icon = new ImageIcon ("info.png"); // image for dialog
+	ImageIcon icon = new ImageIcon ("src/imgs/info.png"); // image for dialog
 
 	// label - use html to format
 	JLabel label = new JLabel (
@@ -312,14 +315,14 @@ public class PermissionsGranted
     // method will be used to modify the account information
     public static void changeInfo (int index, String names[], String phoneNums[], String addresses[], String accountKeys[], double balances[], String info, Font defaultFont) throws IOException
     {
-	ImageIcon iconSuccess = new ImageIcon ("success.png"); // image for success dialog
+	ImageIcon iconSuccess = new ImageIcon ("src/imgs/success.png"); // image for success dialog
 
 	// label for success dialog
 	JLabel labelSuccess = new JLabel (
 		"The account's information was successfully updated!"
 		);
 
-	ImageIcon iconError = new ImageIcon ("error.png"); // image for error dialog
+	ImageIcon iconError = new ImageIcon ("src/imgs/error.png"); // image for error dialog
 
 	// label for error dialog
 	JLabel labelError = new JLabel (
@@ -334,7 +337,7 @@ public class PermissionsGranted
 	// if the phone number is to be modified
 	if (info.equals ("phone"))
 	{
-	    ImageIcon iconPhone = new ImageIcon ("phone.png"); // image for phone
+	    ImageIcon iconPhone = new ImageIcon ("src/imgs/phone.png"); // image for phone
 
 	    // label for phone dialog
 	    JLabel labelPhone = new JLabel (
@@ -371,7 +374,7 @@ public class PermissionsGranted
 	// else if the user wishes to modify the address
 	else if (info.equals ("address"))
 	{
-	    ImageIcon iconAddress = new ImageIcon ("address.png"); // image for address
+	    ImageIcon iconAddress = new ImageIcon ("src/imgs/address.png"); // image for address
 
 	    // label for address dialog
 	    JLabel labelAddress = new JLabel (
@@ -403,7 +406,7 @@ public class PermissionsGranted
 	// else if the user wishes to modify the account key
 	else if (info.equals ("key"))
 	{
-	    ImageIcon iconKey = new ImageIcon ("key.png"); // image for key
+	    ImageIcon iconKey = new ImageIcon ("src/imgs/key.png"); // image for key
 
 	    // label for key dialog
 	    JLabel labelKey = new JLabel (
@@ -460,4 +463,4 @@ public class PermissionsGranted
 	}
 
     }
-} // PermissionsGranted class
+} // src.BankingOnIt.PermissionsGranted class

@@ -1,13 +1,15 @@
-/*
+package src.BankingOnIt;/*
 
     NOTE: The sole purpose of this class is to supply methods.
     This program SHOULD NOT be run on its own.
 
 */
 
+import src.BankingOnIt.FileHandler;
+
 import java.io.*;
 
-// The "SortAndSearch" class.
+// The "src.BankingOnIt.SortAndSearch" class.
 public class SortAndSearch
 {
     public static void main (String[] args)
@@ -241,6 +243,6 @@ public class SortAndSearch
 	return -1; // if this statement is reached, return -1
 
     }
-} // SortAndSearch class
+} // src.BankingOnIt.SortAndSearch class
 
 

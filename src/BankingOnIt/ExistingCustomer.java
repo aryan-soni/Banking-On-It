@@ -1,4 +1,4 @@
-/*
+package src.BankingOnIt;/*
 
     NOTE: The sole purpose of this class is to supply methods.
     This program SHOULD NOT be run on its own.
@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.io.*;
 import java.awt.*;
 
-// The "ExistingCustomer" class.
+// The "src.BankingOnIt.ExistingCustomer" class.
 public class ExistingCustomer
 {
     public static void main (String[] args)
@@ -28,9 +28,9 @@ public class ExistingCustomer
 	String enteredName, enteredKey;
 
 	// render images
-	ImageIcon iconName = new ImageIcon ("name.png"); // image for name dialog
-	ImageIcon iconKey = new ImageIcon ("key.png"); // image for key dialog
-	ImageIcon iconError = new ImageIcon ("error.png"); // image for error dialog
+	ImageIcon iconName = new ImageIcon ("src/imgs/name.png"); // image for name dialog
+	ImageIcon iconKey = new ImageIcon ("src/imgs/key.png"); // image for key dialog
+	ImageIcon iconError = new ImageIcon ("src/imgs/error.png"); // image for error dialog
 
 	int index; // will store index of user
 
@@ -110,4 +110,4 @@ public class ExistingCustomer
 		    );
 	}
     }
-} // ExistingCustomer class
+} // src.BankingOnIt.ExistingCustomer class

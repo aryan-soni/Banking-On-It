@@ -1,11 +1,11 @@
-/*
+package src.BankingOnIt;/*
 
     NOTE: The sole purpose of this class is to supply the encode and decode methods to other classes.
     This program SHOULD NOT be run on its own.
 
 */
 
-// The "Cryptographer" class.
+// The "src.BankingOnIt.Cryptographer" class.
 public class Cryptographer
 {
     public static void main (String[] args)
@@ -262,5 +262,5 @@ public class Cryptographer
 	return newChar; // return new char
 
     }
-} // Cryptographer class
+} // src.BankingOnIt.Cryptographer class
 

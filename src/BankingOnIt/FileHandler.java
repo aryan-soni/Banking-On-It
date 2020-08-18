@@ -1,4 +1,4 @@
-/*
+package src.BankingOnIt;/*
 
     NOTE: The sole purpose of this class is to supply methods.
     This program SHOULD NOT be run on its own.
@@ -7,7 +7,7 @@
 
 import java.io.*;
 
-// The "FileHandler" class.
+// The "src.BankingOnIt.FileHandler" class.
 public class FileHandler
 {
     public static void main (String[] args)
@@ -22,7 +22,7 @@ public class FileHandler
 	int count = 0; // value that will be returned - will store number of customers
 
 	// will be used to count # of accounts - useful for defining length of arrays
-	BufferedReader counter = new BufferedReader (new FileReader ("CustomerData.txt"));
+	BufferedReader counter = new BufferedReader (new FileReader ("src/BankingOnIt/CustomerData.txt"));
 
 	// while there is data to parse in the text file
 	while (counter.readLine () != null)
@@ -50,9 +50,9 @@ public class FileHandler
 	}
 
 	// set up main file reader
-	BufferedReader fr = new BufferedReader (new FileReader ("CustomerData.txt"));
+	BufferedReader fr = new BufferedReader (new FileReader ("src/BankingOnIt/CustomerData.txt"));
 
-	// populate parallel arrays - call method from Cryptographer class to decode each line of data
+	// populate parallel arrays - call method from src.BankingOnIt.Cryptographer class to decode each line of data
 	for (int i = 0 ; i < count ; i++)
 	{
 	    names [i] = Cryptographer.decode (fr.readLine ());
@@ -70,11 +70,11 @@ public class FileHandler
     }
 
 
-    // method will append new data to the text file - call method from Cryptographer class to encode data when sending it to the text file
+    // method will append new data to the text file - call method from src.BankingOnIt.Cryptographer class to encode data when sending it to the text file
     public static void appendToFile (String newName, String newPhoneNum, String newAddress, String newAccountKey, double newBalance) throws IOException
     {
 	// config FileWriter to append to existing file
-	FileWriter outFile = new FileWriter ("CustomerData.txt", true);
+	FileWriter outFile = new FileWriter ("src/BankingOnIt/CustomerData.txt", true);
 	PrintWriter output = new PrintWriter (outFile);
 
 	// add info to file
@@ -95,10 +95,10 @@ public class FileHandler
 	int count = countCustomers (); // store # of customers by calling countCustomers method
 
 	// config FileWriter to rewrite existing file
-	FileWriter outFile = new FileWriter ("CustomerData.txt");
+	FileWriter outFile = new FileWriter ("src/BankingOnIt/CustomerData.txt");
 	PrintWriter output = new PrintWriter (outFile);
 
-	// populate text file - call method from Cryptographer class to encode data when sending it to the text file
+	// populate text file - call method from src.BankingOnIt.Cryptographer class to encode data when sending it to the text file
 	for (int i = 0 ; i < count ; i++)
 	{
 	    // add info to file
@@ -112,4 +112,4 @@ public class FileHandler
 	outFile.close (); // close outFile
 
     }
-} // FileHandler class
+} // src.BankingOnIt.FileHandler class

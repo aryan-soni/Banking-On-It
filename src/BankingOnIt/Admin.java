@@ -1,4 +1,4 @@
-/*
+package src.BankingOnIt;/*
 
     NOTE: The sole purpose of this class is to supply methods.
     This program SHOULD NOT be run on its own.
@@ -10,7 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.*;
 
-// The "Admin" class.
+// The "src.BankingOnIt.Admin" class.
 public class Admin
 {
     public static void main (String[] args)
@@ -31,8 +31,8 @@ public class Admin
 	// label if there is an incorrect password
 	JLabel labelIncorrect = new JLabel ("The password entered was incorrect. Please try again.");
 
-	ImageIcon iconKey = new ImageIcon ("key.png"); // image of key
-	ImageIcon iconError = new ImageIcon ("error.png"); // image of error clipart
+	ImageIcon iconKey = new ImageIcon ("src/imgs/key.png"); // image of key
+	ImageIcon iconError = new ImageIcon ("src/imgs/error.png"); // image of error clipart
 
 	labelPass.setForeground (Color.white); // make text white
 	labelPass.setFont (defaultFont); // set font to default font
@@ -44,7 +44,7 @@ public class Admin
 	// Note: Due to multiple parameters, InputDialog will return answer as object - need to convert to string to store it in variable
 	// ask for password
 	String password = (String) JOptionPane.showInputDialog (
-		null, labelPass, "Banking On It: Admin Log-In", JOptionPane.QUESTION_MESSAGE, iconKey, null, ""
+		null, labelPass, "Banking On It: src.BankingOnIt.Admin Log-In", JOptionPane.QUESTION_MESSAGE, iconKey, null, ""
 		);
 
 	boolean validInput = false; // input is invalid by default
@@ -62,12 +62,12 @@ public class Admin
 	    {
 		// message dialog informs user that input is invalid
 		JOptionPane.showMessageDialog (
-			null, labelError, "Banking On It: Admin Log-In - ERROR!", JOptionPane.ERROR_MESSAGE, iconError
+			null, labelError, "Banking On It: src.BankingOnIt.Admin Log-In - ERROR!", JOptionPane.ERROR_MESSAGE, iconError
 			);
 
 		// ask for input again
 		password = (String) JOptionPane.showInputDialog (
-			null, labelPass, "Banking On It: Admin Log-In", JOptionPane.QUESTION_MESSAGE, iconKey, null, ""
+			null, labelPass, "Banking On It: src.BankingOnIt.Admin Log-In", JOptionPane.QUESTION_MESSAGE, iconKey, null, ""
 			);
 	    }
 	    // else if the password is incorrect
@@ -75,12 +75,12 @@ public class Admin
 	    {
 		// message dialog informs user that password is incorrect
 		JOptionPane.showMessageDialog (
-			null, labelIncorrect, "Banking On It: Admin Log-In - INCORRECT PASSWORD!", JOptionPane.ERROR_MESSAGE, iconError
+			null, labelIncorrect, "Banking On It: src.BankingOnIt.Admin Log-In - INCORRECT PASSWORD!", JOptionPane.ERROR_MESSAGE, iconError
 			);
 
 		// ask for input again
 		password = (String) JOptionPane.showInputDialog (
-			null, labelPass, "Banking On It: Admin Log-In", JOptionPane.QUESTION_MESSAGE, iconKey, null, ""
+			null, labelPass, "Banking On It: src.BankingOnIt.Admin Log-In", JOptionPane.QUESTION_MESSAGE, iconKey, null, ""
 			);
 
 	    }
@@ -108,7 +108,7 @@ public class Admin
 	JLabel label = new JLabel ("Welcome! Please select an action.");
 
 	// icon of a lock unlocked
-	ImageIcon icon = new ImageIcon ("unlock.png");
+	ImageIcon icon = new ImageIcon ("src/imgs/unlock.png");
 
 	label.setForeground (Color.white); // make text white
 	label.setFont (defaultFont); // set font to default font
@@ -121,7 +121,7 @@ public class Admin
 	    // prompt user to choose option - store response into var
 	    int response = JOptionPane.showOptionDialog (
 		    null, label,
-		    "Banking On It - Admin Portal", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, icon, options, options [0]
+		    "Banking On It - src.BankingOnIt.Admin Portal", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, icon, options, options [0]
 		    );
 
 	    // if user selects view all customers
@@ -153,7 +153,7 @@ public class Admin
     // method to view all customers
     public static void viewAllCustomers (String names[], String phoneNums[], String addresses[], String accountKeys[], double balances[]) throws IOException
     {
-	ImageIcon icon = new ImageIcon ("unlock.png"); // set up icon
+	ImageIcon icon = new ImageIcon ("src/imgs/unlock.png"); // set up icon
 
 	// change font and text size for JTextArea
 	Font font = new Font ("Monospaced", Font.BOLD, 13);
@@ -205,9 +205,9 @@ public class Admin
 	String enteredName, enteredKey;
 
 	// render images
-	ImageIcon iconName = new ImageIcon ("name.png"); // image for name dialog
-	ImageIcon iconKey = new ImageIcon ("key.png"); // image for key dialog
-	ImageIcon iconError = new ImageIcon ("error.png"); // image for error dialog
+	ImageIcon iconName = new ImageIcon ("src/imgs/name.png"); // image for name dialog
+	ImageIcon iconKey = new ImageIcon ("src/imgs/key.png"); // image for key dialog
+	ImageIcon iconError = new ImageIcon ("src/imgs/error.png"); // image for error dialog
 
 	int index; // will store index of user
 
@@ -275,7 +275,7 @@ public class Admin
 	{
 	    // label for dialog - use html to format
 	    JLabel labelUserInvalid = new JLabel (
-		    "<html> Sorry, the information entered does not match with our records. <br> You will now be redirected to the Admin Portal. </html>"
+		    "<html> Sorry, the information entered does not match with our records. <br> You will now be redirected to the src.BankingOnIt.Admin Portal. </html>"
 		    );
 
 	    labelUserInvalid.setForeground (Color.white); // make text white
@@ -288,4 +288,4 @@ public class Admin
 	}
 
     }
-} // Admin class
+} // src.BankingOnIt.Admin class
