@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-_Banking On It_ is a virtual ATM that is built with the _Java_ programming language. From a technical standpoint, this program utilizes encryption to create a secure database, while also incorporating the binary search and bubble sort algorithms. Furthermore, this program utilizes arrays, methods, and loops, while also featuring a comprehensive GUI.
+_Banking On It_ is built with the _Java_ programming language.
 
 The application that is most optimized to run the program is [_Ready to Program with Java_](https://ready-to-program-with-java.software.informer.com/1.7/). This application can be downloaded on the _Microsoft Windows_ operating system. However, the program can also be run with modern IDE’s such as [_IntelliJ_](https://www.jetbrains.com/idea/).  
 
