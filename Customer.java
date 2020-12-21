@@ -92,5 +92,13 @@ public class Customer {
   public void withdraw(double amoountToWithdraw) {
     this.balance -= amoountToWithdraw;
   }
+
+  /** Checks if the amount to withdraw is valid
+    * @param amoountToWithdraw The amount to be withdrawn from the customer's balance
+    * @return Whether the amount to withdraw is less than or equal to the balance
+  */
+  public boolean withdraw(double amoountToWithdraw) {
+    return amountToWithdraw <= this.balance;
+  }
   
 }
