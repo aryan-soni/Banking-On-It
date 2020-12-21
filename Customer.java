@@ -30,4 +30,39 @@ public class Customer {
     
   }
   
+  /** Enables access to customer's name 
+    * @return name The customer's full name
+  */
+  public String getName() {
+    return this.name;
+  }
+  
+  /** Enables access to customer's phone number 
+    * @return phoneNum The customer's phone number
+  */
+  public String getPhoneNum() {
+    return this.phoneNum;
+  }
+  
+  /** Enables access to customer's address
+    * @return address The customer's address
+  */
+  public String getAddress() {
+    return this.address;
+  }
+  
+  /** Enables access to customer's account key 
+    * @return key The customer's account key
+  */
+  public String getKey() {
+    return this.key;
+  }
+  
+  /** Enables access to customer's balance 
+    * @return name The customer's full name
+  */
+  public double getBalance() {
+    return this.balance;
+  }
+  
 }
