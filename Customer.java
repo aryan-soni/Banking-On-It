@@ -65,4 +65,32 @@ public class Customer {
     return this.balance;
   }
   
+  /** Enables the customer's phone number to be changed
+    * @param newPhoneNum The customer's new phone number
+  */
+  public void setPhoneNum(String newPhoneNum) {
+    this.phoneNum = newPhoneNum;
+  }
+  
+  /** Enables the customer's account key to be changed
+    * @param newKey The customer's new account key
+  */
+  public void setKey(String newKey) {
+    this.key = newKey;
+  }
+  
+  /** Enables an amount to be deposited into the customer's balance
+    * @param amoountToDeposit The amount to be deposited into the customer's balance
+  */
+  public void deposit(double amoountToDeposit) {
+    this.balance += amoountToDeposit;
+  }
+  
+  /** Enables an amount to be withdrawn from the customer's balance
+    * @param amoountToWithdraw The amount to be withdrawn from the customer's balance
+  */
+  public void withdraw(double amoountToWithdraw) {
+    this.balance -= amoountToWithdraw;
+  }
+  
 }
