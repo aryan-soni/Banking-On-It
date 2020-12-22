@@ -8,21 +8,23 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 
 public class BankingSimulator {
   
   // Outline Attributes 
-  public ArrayList <Customer> customers = new ArrayList <Customer>();
+  private ArrayList <Customer> customers = new ArrayList <Customer>();
   //private BankingGUI view;
   File file;
   Scanner in;
+  PrintWriter out;
   
   /** Constructs a BankingSimulator object */
   public BankingSimulator() {
     
     try {
       this.file = new File("CustomerData.txt");
-      this.in = new Scanner(file); 
+      this.in = new Scanner(this.file); 
     }
     catch (FileNotFoundException ex) {
       System.out.println(ex.getMessage() + "in" + System.getProperty("user.dir"));
@@ -140,6 +142,36 @@ public class BankingSimulator {
     }
     
     return -1; 
+    
+  }
+  
+  /** Adds a customer to the database
+    * @param name The customer's full name
+    * @param phoneNum The customer's phone number
+    * @param address The customer's address
+    * @param key The customer's account key
+    * @param balance The customer's account balance
+    */
+  private void addCustomer(String name, String phoneNum, String address, String key, double balance) {
+    
+    // Add customer to ArrayList
+    Customer newCustomer = new Customer(name, phoneNum, address, key, balance);
+    this.customers.add(newCustomer);
+    
+    // Add customer's encrypted details to text file
+    try {
+      this.out = new PrintWriter(this.file); 
+    }
+    catch (FileNotFoundException ex) {
+      System.out.println(ex.getMessage() + "in" + System.getProperty("user.dir"));
+      System.exit(1);
+    }
+    
+    out.println(Cryptographer.encode(name));
+    out.println(Cryptographer.encode(phoneNum));
+    out.println(Cryptographer.encode(address));
+    out.println(Cryptographer.encode(key));
+    out.println(Cryptographer.encode(Double.toString(balance)));
     
   }
   
