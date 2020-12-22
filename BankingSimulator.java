@@ -14,7 +14,7 @@ public class BankingSimulator {
   
   // Outline Attributes 
   private ArrayList <Customer> customers = new ArrayList <Customer>();
-  //private BankingGUI view;
+  private BankingGUI view;
   File file;
   Scanner in;
   PrintWriter out;
@@ -178,8 +178,8 @@ public class BankingSimulator {
   /** Sets the view for the BankingSimulator
     * @param currentGUI GUI to set as the view
     */
-  //public void setGUI(BankingGUI currentGUI) {
-    //this.view = currentGUI;
-  //}
+  public void setGUI(BankingGUI currentGUI) {
+    this.view = currentGUI;
+  }
 
 }
