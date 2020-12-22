@@ -26,6 +26,7 @@ public class Main {
         // temporarily populate arrays
         for (int i = 0; i < count + 20; i++) {
             names[i] = " ";
+            
             phoneNums[i] = " ";
             addresses[i] = " ";
             accountKeys[i] = " ";
