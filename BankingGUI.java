@@ -12,6 +12,7 @@ public class BankingGUI {
   // Declare attributes
   private BankingSimulator simulator;
   private UIManager UI = new UIManager();
+  private ButtonsController controller;
 
   /*Constructs a BankingGUI object 
     * @param simulator The banking simulator to link the GUI to
@@ -20,6 +21,7 @@ public class BankingGUI {
     
     this.simulator = simulator;
     this.simulator.setGUI(this);
+    this.controller = new ButtonsController(this.simulator);
     this.layoutMainView();
     
     // Configurate settings for UIManager
@@ -52,13 +54,6 @@ public class BankingGUI {
        );
     
     } while (true);
-    
-  }
-
-  /*Sets up controllers for each time user inputs their choice */
-  private void registerControllers () {
-    
-    ButtonsController controller = new ButtonsController(this.simulator);
     
   }
 
