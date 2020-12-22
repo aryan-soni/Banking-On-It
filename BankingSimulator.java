@@ -19,7 +19,7 @@ public class BankingSimulator {
   Scanner in;
   PrintWriter out;
   
-  /** Constructs a BankingSimulator object */
+  /* Constructs a BankingSimulator object */
   public BankingSimulator() {
     
     try {
