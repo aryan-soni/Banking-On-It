@@ -175,7 +175,7 @@ public class BankingSimulator {
     
   }
   
-  /** Sets the view for the BankingSimulator
+  /** Return's the simulator's GUI
     * @param currentGUI GUI to set as the view
     */
   public void setGUI(BankingGUI currentGUI) {
