@@ -157,6 +157,7 @@ public class BankingSimulator {
     // Add customer to ArrayList
     Customer newCustomer = new Customer(name, phoneNum, address, key, balance);
     this.customers.add(newCustomer);
+    this.quickSort(this.customers, 0, this.customers.size() - 1);
     
     // Add customer's encrypted details to text file
     try {
@@ -167,15 +168,22 @@ public class BankingSimulator {
       System.exit(1);
     }
     
-    out.println(Cryptographer.encode(name));
+    out.println("\n" + Cryptographer.encode(name));
     out.println(Cryptographer.encode(phoneNum));
     out.println(Cryptographer.encode(address));
     out.println(Cryptographer.encode(key));
-    out.println(Cryptographer.encode(Double.toString(balance)));
+    out.print(Cryptographer.encode(Double.toString(balance)));
     
   }
   
-  /** Return's the simulator's GUI
+  /** Return's the simulator's ArrayList of customers
+    * @return The simulator's ArrayList of customers
+    */
+  public ArrayList <Customer> getCustomers() {
+    return this.customers;
+  }
+  
+  /** Sets the simulator's GUI
     * @param currentGUI GUI to set as the view
     */
   public void setGUI(BankingGUI currentGUI) {

@@ -28,7 +28,7 @@ public class ButtonsController {
     
      // if the user selects "admin"
      if (response == 1) {
-       this.view.layoutViewAdmin();
+       this.view.layoutViewAdminMain();
      }
      // else if the user selects admin
      else if (response == 2) {
@@ -65,6 +65,25 @@ public class ButtonsController {
     else {
       return "Test123";
     }
+  
+  }
+  
+  /* Handles user input for the admin portal
+   * @param response The user's response
+   * @return Whether the user wishes to continue
+   * */
+  public boolean actionPerformedAdminPortal (int response) {
+    
+    if (response == 1) {
+    }
+    else if (response == 2) {
+      this.view.layoutViewAdminViewCustomers();
+    }
+    else {
+      return false;
+    }
+    
+    return true;
   
   }
   

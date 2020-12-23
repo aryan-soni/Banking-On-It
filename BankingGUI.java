@@ -19,11 +19,15 @@ public class BankingGUI {
   
   private ImageIcon iconKey;
   private ImageIcon iconError;
+  private ImageIcon iconUnlock;
   
   private JLabel lblEmpty;
   private JLabel lblIncorrectKey;
+  private JLabel lblAction;
   
   private Font font;
+  
+  private NumberFormat money;
 
   /*Constructs a BankingGUI object 
     * @param simulator The banking simulator to link the GUI to
@@ -44,13 +48,16 @@ public class BankingGUI {
     
     this.iconKey = new ImageIcon("./imgs/key.png");
     this.iconError = new ImageIcon("./imgs/error.png");
+    this.iconUnlock = new ImageIcon("./imgs/unlock.png");
     
     this.lblEmpty = new JLabel("We received an empty input. Please try again.");
     this.lblEmpty.setFont(this.font);
     this.lblEmpty.setForeground(Color.white);
-    this.lblIncorrectKey = new JLabel("The key entered was incorrect. Please try again.");
-    this.lblIncorrectKey.setFont(this.font);
-    this.lblIncorrectKey.setForeground(Color.white);
+    this.lblAction = new JLabel("Welcome! Please select an action.");
+    this.lblAction.setFont(this.font);
+    this.lblAction.setForeground(Color.white);
+    
+    money = NumberFormat.getCurrencyInstance();
     
     this.layoutViewMain();
     
@@ -86,12 +93,16 @@ public class BankingGUI {
     
   }
   
-  /* Lays out the GUI for the admin menu */
-  public void layoutViewAdmin() {
+  /* Lays out the GUI for the main admin menu */
+  public void layoutViewAdminMain() {
     
-    JLabel lblAdmin = new JLabel("<html> Enter the case-sensitive admin key: <br> (Key is Test123) </html>");
+    JLabel lblAdmin = new JLabel("<html> Enter the case-sensitive admin password: <br> (Pass. is Test123) </html>");
     lblAdmin.setFont(this.font);
     lblAdmin.setForeground(Color.white);
+    
+    JLabel lblIncorrectPass = new JLabel("The password entered was incorrect. Please try again.");
+    lblIncorrectPass.setFont(this.font);
+    lblIncorrectPass.setForeground(Color.white);
     
     String password = (String) JOptionPane.showInputDialog (
        null, lblAdmin, "Banking On It: Admin Log-In", JOptionPane.QUESTION_MESSAGE, this.iconKey, null, ""
@@ -123,7 +134,7 @@ public class BankingGUI {
       else if(!passwordInputStatus.equals("Test123")) {
         
         JOptionPane.showMessageDialog (
-           null, this.lblIncorrectKey, "Banking On It: Admin Log-In - ERROR!", JOptionPane.ERROR_MESSAGE, this.iconError
+           null, lblIncorrectPass, "Banking On It: Admin Log-In - ERROR!", JOptionPane.ERROR_MESSAGE, this.iconError
         );
         
         passwordInputStatus = (String) JOptionPane.showInputDialog (
@@ -135,6 +146,79 @@ public class BankingGUI {
       
     }
     
+    String adminOptions[] = {"Log-Out", "Modify a Customer's Information", "View All Customers"};
+    
+    int response = 0;
+    
+    // controller will continue to validate input until the correct input is inputted
+    do {
+      
+       // prompt user to choose option - store response into var
+       response = JOptionPane.showOptionDialog (
+          null, this.lblAction, "Banking On It - Admin Portal", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, 
+          this.iconUnlock, adminOptions, adminOptions[0]
+       );
+      
+    } while (this.controller.actionPerformedAdminPortal(response));
+    
+  }
+  
+  /* Lays out the GUI such that the admin can view all customers */
+  public void layoutViewAdminViewCustomers() {
+    
+   String allCustomers = "FORMAT: Name, Phone Number, Address, Account Key, Balance\n";
+   
+   // populate String to output with customer details
+   for(Customer customer: this.simulator.getCustomers()) {
+      allCustomers += customer.getName() + ", " + this.formatPhone(customer.getPhoneNum()) + ", " +
+        customer.getAddress() + ", " + customer.getKey() + ", " + money.format(customer.getBalance()) + "\n";
+    }
+   
+   JTextArea txtArea = new JTextArea(allCustomers);
+   txtArea.setForeground(Color.black);
+   txtArea.setFont(this.font);
+   
+   JScrollPane scrollPane = new JScrollPane(txtArea);
+   scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+   scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+   
+   JOptionPane.showMessageDialog(
+      null, scrollPane, "Banking On It: View All Customers", JOptionPane.INFORMATION_MESSAGE, this.iconUnlock
+   );
+   
+  }
+  
+  /* Formats any given phone number
+   * @prompt phoneNum The number to format
+   * @return The formatted number
+  */
+  private String formatPhone(String phoneNum) {
+    return "(" + phoneNum.substring(0, 3) + ") " + phoneNum.substring(3, 6) + "-" + phoneNum.substring(6);
+  }
+  
+  /* Lays out the GUI such that the a customer's information can be edited */
+  public void layoutViewModifyCustomer() {
+    
+   String allCustomers = "FORMAT: Name, Phone Number, Address, Account Key, Balance\n";
+   
+   // populate String to output with customer details
+   for(Customer customer: this.simulator.getCustomers()) {
+      allCustomers += customer.getName() + ", " + this.formatPhone(customer.getPhoneNum()) + ", " +
+        customer.getAddress() + ", " + customer.getKey() + ", " + money.format(customer.getBalance()) + "\n";
+    }
+   
+   JTextArea txtArea = new JTextArea(allCustomers);
+   txtArea.setForeground(Color.black);
+   txtArea.setFont(this.font);
+   
+   JScrollPane scrollPane = new JScrollPane(txtArea);
+   scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+   scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+   
+   JOptionPane.showMessageDialog(
+      null, scrollPane, "Banking On It: View All Customers", JOptionPane.INFORMATION_MESSAGE, this.iconUnlock
+   );
+   
   }
     
 }
