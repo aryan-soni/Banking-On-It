@@ -79,17 +79,17 @@ public class Customer {
   }
   
   /** Enables an amount to be deposited into the customer's balance
-    * @param amoountToDeposit The amount to be deposited into the customer's balance
+    * @param amountToDeposit The amount to be deposited into the customer's balance
   */
-  public void deposit(double amoountToDeposit) {
-    this.balance += amoountToDeposit;
+  public void deposit(double amountToDeposit) {
+    this.balance += amountToDeposit;
   }
   
   /** Enables an amount to be withdrawn from the customer's balance
-    * @param amoountToWithdraw The amount to be withdrawn from the customer's balance
+    * @param amountToWithdraw The amount to be withdrawn from the customer's balance
   */
-  public void withdraw(double amoountToWithdraw) {
-    this.balance -= amoountToWithdraw;
+  public void withdraw(double amountToWithdraw) {
+    this.balance -= amountToWithdraw;
   }
 
   /** Checks if the amount to withdraw is valid

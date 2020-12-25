@@ -1,4 +1,4 @@
-/** AdminAuthGUI
+/** AdminGUI
 *  Models the GUI of the admin section of a banking system
 *  @author Aryan Soni
 */
@@ -62,7 +62,7 @@ public class AdminGUI extends BankingGUI {
            null, super.lblEmpty, "Banking On It: Admin Log-In - ERROR!", JOptionPane.ERROR_MESSAGE, super.iconError
         );
         
-        passwordInputStatus = (String) JOptionPane.showInputDialog (
+        password = (String) JOptionPane.showInputDialog (
            null, lblAdmin, "Banking On It: Admin Log-In", JOptionPane.QUESTION_MESSAGE, super.iconKey, null, ""
         );
       }
@@ -73,12 +73,12 @@ public class AdminGUI extends BankingGUI {
            null, lblIncorrectPass, "Banking On It: Admin Log-In - ERROR!", JOptionPane.ERROR_MESSAGE, super.iconError
         );
         
-        passwordInputStatus = (String) JOptionPane.showInputDialog (
+        password = (String) JOptionPane.showInputDialog (
            null, lblAdmin, "Banking On It: Admin Log-In", JOptionPane.QUESTION_MESSAGE, super.iconKey, null, ""
         );
       }
       
-      passwordInputStatus = this.controller.actionPerformedMain(passwordInputStatus);
+      passwordInputStatus = this.controller.actionPerformedMain(password);
       
     }
     
@@ -114,7 +114,7 @@ public class AdminGUI extends BankingGUI {
    
    // populate String to output with customer details
    for(Customer customer: this.simulator.getCustomers()) {
-      allCustomers += customer.getName() + ", " + this.formatPhone(customer.getPhoneNum()) + ", " +
+      allCustomers += customer.getName() + ", " + super.formatPhone(customer.getPhoneNum()) + ", " +
         customer.getAddress() + ", " + customer.getKey() + ", " + money.format(customer.getBalance()) + "\n";
     }
    
@@ -130,14 +130,6 @@ public class AdminGUI extends BankingGUI {
       null, scrollPane, "Banking On It: View All Customers", JOptionPane.INFORMATION_MESSAGE, super.iconUnlock
    );
    
-  }
-  
-  /* Formats any given phone number
-   * @prompt phoneNum The number to format
-   * @return The formatted number
-  */
-  private String formatPhone(String phoneNum) {
-    return "(" + phoneNum.substring(0, 3) + ") " + phoneNum.substring(3, 6) + "-" + phoneNum.substring(6);
   }
 
 }

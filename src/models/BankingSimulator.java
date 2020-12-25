@@ -176,6 +176,29 @@ public class BankingSimulator {
     
   }
   
+  /** Updates the database */
+  public void updateDB() {
+    
+    this.quickSort(this.customers, 0, this.customers.size() - 1);
+    
+    try {
+      this.out = new PrintWriter(this.file); 
+    }
+    catch (FileNotFoundException ex) {
+      System.out.println(ex.getMessage() + "in" + System.getProperty("user.dir"));
+      System.exit(1);
+    }
+    
+    for(Customer customer: this.customers) {
+          out.println("\n" + Cryptographer.encode(customer.getName()));
+          out.println(Cryptographer.encode(customer.getPhoneNum()));
+          out.println(Cryptographer.encode(customer.getAddress()));
+          out.println(Cryptographer.encode(customer.getKey()));
+          out.print(Cryptographer.encode(Double.toString(customer.getBalance())));
+    }
+    
+  }
+  
   /** Return's the simulator's ArrayList of customers
     * @return The simulator's ArrayList of customers
     */

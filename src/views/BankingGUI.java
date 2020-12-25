@@ -17,13 +17,9 @@ public class BankingGUI {
   
   protected MainController controller;
   
-  protected ImageIcon iconKey;
-  protected ImageIcon iconError;
-  protected ImageIcon iconUnlock;
+  protected ImageIcon iconKey, iconError, iconUnlock;
   
-  protected JLabel lblEmpty;
-  protected JLabel lblIncorrectKey;
-  protected JLabel lblAction;
+  protected JLabel lblEmpty, lblAction;
   
   protected Font font;
   
@@ -53,12 +49,21 @@ public class BankingGUI {
     this.lblEmpty = new JLabel("We received an empty input. Please try again.");
     this.lblEmpty.setFont(this.font);
     this.lblEmpty.setForeground(Color.white);
+    
     this.lblAction = new JLabel("Welcome! Please select an action.");
     this.lblAction.setFont(this.font);
     this.lblAction.setForeground(Color.white);
     
-    money = NumberFormat.getCurrencyInstance();
+    this.money = NumberFormat.getCurrencyInstance();
     
+  }
+  
+  /* Formats any given phone number
+   * @prompt phoneNum The number to format
+   * @return The formatted number
+  */
+  protected String formatPhone(String phoneNum) {
+    return "(" + phoneNum.substring(0, 3) + ") " + phoneNum.substring(3, 6) + "-" + phoneNum.substring(6);
   }
     
 }
