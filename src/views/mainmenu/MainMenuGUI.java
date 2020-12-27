@@ -11,7 +11,7 @@ public class MainMenuGUI extends BankingGUI {
   
   // Outline attributes
   
-  private MainController controller;
+  private MainMenuController controller;
   
   /*Constructs a MainMenuGUI object 
     * @param simulator The banking simulator to link the GUI to
@@ -19,16 +19,16 @@ public class MainMenuGUI extends BankingGUI {
   public MainMenuGUI(BankingSimulator simulator) {
     
     super(simulator);
-    this.controller = new MainController(this, simulator);
+    this.controller = new MainMenuController(this, simulator);
     
   }
 
   /*Lays out the GUI for the main menu */
   public void layoutView() {
     
-    String options[] = {"Exit", "Admin", "Customer"};
+    String options[] = {"Exit", "Admin", "Existing Customer", "New Customer"};
     JLabel lblMain = new JLabel("<html>Welcome to Banking On It - the Ultimate Virtual ATM!<br><br>" +
-       "Please select whether you are a customer or administrator.<br><br>Click 'Exit' to exit.</html>"
+       "Please select whether you are a new/existing customer or administrator.<br><br>Click 'Exit' to exit.</html>"
      );
     
     lblMain.setForeground(Color.white);

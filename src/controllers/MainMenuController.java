@@ -30,9 +30,12 @@ public class MainMenuController {
      if (response == 1) {
        AdminGUI admin = new AdminGUI(this.simulator);
      }
-     // else if the user selects admin
+     // else if the user selects existing customer
      else if (response == 2) {
-
+       System.out.println("Hi");
+       CustomerGUI customerView = new CustomerGUI(this.simulator);
+       CustomerController customerController = new CustomerController(customerView, this.simulator);
+       customerView.layoutViewCustomerPortal();
      }
      // else if user selects help
      else if (response == 3) {

@@ -6,8 +6,8 @@
 public class CustomerController {
   
   // Outline attributes
-  CustomerGUI view;
-  BankingSimulator simulator;
+  protected CustomerGUI view;
+  protected BankingSimulator simulator;
   
   /* Constructs a CustomerController object 
    * @param simulator The banking simulator to update

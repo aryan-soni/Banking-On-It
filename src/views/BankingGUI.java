@@ -14,8 +14,7 @@ public class BankingGUI {
   protected BankingSimulator simulator;
   
   protected UIManager UI = new UIManager();
-  
-  protected MainController controller;
+
   
   protected ImageIcon iconKey, iconError, iconUnlock;
   
@@ -32,7 +31,6 @@ public class BankingGUI {
     
     this.simulator = simulator;
     this.simulator.setGUI(this);
-    this.controller = new MainController(this, this.simulator);
     
     // Configurate settings for UIManager
     this.UI.put("OptionPane.background", Color.black);
