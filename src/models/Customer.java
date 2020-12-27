@@ -71,6 +71,13 @@ public class Customer {
     this.phoneNum = newPhoneNum;
   }
   
+  /** Enables the customer's address to be changed
+    * @param newAddress The customer's new address
+  */
+  public void setAddress(String newAddress) {
+    this.address = newAddress;
+  }
+  
   /** Enables the customer's account key to be changed
     * @param newKey The customer's new account key
   */

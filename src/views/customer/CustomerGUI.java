@@ -57,18 +57,75 @@ public class CustomerGUI extends BankingGUI {
     this.lblAlphaNum.setFont(this.font);
     this.lblAlphaNum.setForeground(Color.white);
     
-    // if the user is authenticated
-    if(this.layoutViewCollectName()) {
-      //this.layoutViewPortal();
-    };
+  }
+  
+  /* Lays out the GUI for the Customer Portal */
+  public void layoutViewCustomerPortal() {
+    
+    JLabel lblCustomerNotFound = new JLabel("Customer Not Found!");
+    lblCustomerNotFound.setFont(super.font);
+    lblCustomerNotFound.setForeground(Color.white);
+    
+    int customerIndex = -1;
+    
+    do {
+      
+      String name = this.layoutViewCollectName();
+      if(name == null) return;
+    
+      String key = this.layoutViewCollectKey();
+      if(key == null) return;
+      
+      customerIndex = super.simulator.getCustomer(name, key);
+      
+      if(customerIndex == -1) {
+        JOptionPane.showMessageDialog(null, lblCustomerNotFound, "Banking On It: Customer Log-In - ERROR!", 
+           JOptionPane.ERROR_MESSAGE, super.iconError);
+      }
+    
+    } while (customerIndex < 0);
+    
+    Customer customer = super.simulator.getCustomers().get(customerIndex);
+    
+    String customerOptions[] = {"Log-Out", "Change Key", "Change Address", "Change Phone Number",
+    "View Account Details", "Withdraw Money", "Deposit Money"};
+    
+    int response = 0;
+    
+    // controller will ensure that the portal continues to be displayed until the user wishes to exit
+    // controller will also handle the user input
+    do {
+      
+       // prompt user to choose option - store response into var
+       response = JOptionPane.showOptionDialog (
+          null, super.lblAction, "Banking On It - Admin Portal", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, 
+          super.iconUnlock, customerOptions, customerOptions[0]
+       );
+      
+    } while (this.controller.actionPerformedPortal(response, customer));
     
   }
-
+  
+  /* Lays out the GUI to inform a customer that the action they performed was successful 
+   * @param customer The customer whose action was successful
+   */
+  public void layoutViewSuccess(Customer customer) {
+    
+    JLabel lblInfo = new JLabel("Information Updated for: " + customer.getName() + "!");
+    lblInfo.setFont(super.font);
+    lblInfo.setForeground(Color.white);
+    
+    ImageIcon iconSuccess = new ImageIcon("views/imgs/success.png");
+    
+    JOptionPane.showMessageDialog(null, lblInfo, "Banking On It: Customer Information - SUCCESS!", 
+       JOptionPane.INFORMATION_MESSAGE, iconSuccess);
+  
+  }
 
   /* Lays out the GUI to collect a customer's name
-   * @return Whether to continue
+   * @return The customer's name
    */
-  private boolean layoutViewCollectName() {
+  public String layoutViewCollectName() {
     
     String name = (String) JOptionPane.showInputDialog (
        null, this.lblName, "Banking On It: Customer Information", JOptionPane.QUESTION_MESSAGE, this.iconName, null, ""
@@ -82,7 +139,7 @@ public class CustomerGUI extends BankingGUI {
       
       // if the user wishers to return to the home page
       if(nameInputStatus.equals("return home")) {
-        return false;
+        return null;
       }
       // else if there's empty input
       else if(nameInputStatus.equals("")) {
@@ -112,14 +169,14 @@ public class CustomerGUI extends BankingGUI {
       
     }
     
-    return true;
+    return name;
     
   }
   
    /* Lays out the GUI to collect a customer's phone number
-   * @return Whether to continue
+   * @return The customer's phone number
    */
-  private boolean layoutViewCollectPhone() {
+  public String layoutViewCollectPhone() {
     
     String phone = (String) JOptionPane.showInputDialog (
        null, this.lblPhone, "Banking On It: Customer Information", JOptionPane.QUESTION_MESSAGE, this.iconPhone, null, ""
@@ -137,7 +194,7 @@ public class CustomerGUI extends BankingGUI {
       
       // if the user wishers to return to the home page
       if(phoneInputStatus.equals("return home")) {
-        return false;
+        return null;
       }
       // else if there's empty input
       else if(phoneInputStatus.equals("")) {
@@ -167,14 +224,14 @@ public class CustomerGUI extends BankingGUI {
       
     }
     
-    return true;
+    return phone;
     
   }
   
     /* Lays out the GUI to collect a customer's address
-   * @return Whether to continue
+   * @return The customer's address
    */
-  private boolean layoutViewCollectAddress() {
+  public String layoutViewCollectAddress() {
     
     String address = (String) JOptionPane.showInputDialog (
        null, this.lblAddress, "Banking On It: Customer Information", JOptionPane.QUESTION_MESSAGE, this.iconAddress, null, ""
@@ -188,7 +245,7 @@ public class CustomerGUI extends BankingGUI {
       
       // if the user wishers to return to the home page
       if(addressInputStatus.equals("return home")) {
-        return false;
+        return null;
       }
       // else if there's empty input
       else if(addressInputStatus.equals("")) {
@@ -218,14 +275,14 @@ public class CustomerGUI extends BankingGUI {
       
     }
     
-    return true;
+    return address;
     
   }
   
   /* Lays out the GUI to collect a customer's key
-   * @return Whether to continue
+   * @return The customer's account key
    */
-  private boolean layoutViewCollectKey() {
+  public String layoutViewCollectKey() {
     
     String key = (String) JOptionPane.showInputDialog (
        null, this.lblKey, "Banking On It: Customer Information", JOptionPane.QUESTION_MESSAGE, super.iconKey, null, ""
@@ -239,7 +296,7 @@ public class CustomerGUI extends BankingGUI {
       
       // if the user wishers to return to the home page
       if(keyInputStatus.equals("return home")) {
-        return false;
+        return null;
       }
       // else if there's empty input
       else if(keyInputStatus.equals("")) {
@@ -269,14 +326,14 @@ public class CustomerGUI extends BankingGUI {
       
     }
     
-    return true;
+    return key;
     
   }
   
   /* Lays out the GUI to collect a customer's account balance
-   * @return Whether to continue
+   * @return The customer's balance
    */
-  private boolean layoutViewCollectBalance() {
+  public String layoutViewCollectBalance() {
     
     String balance = (String) JOptionPane.showInputDialog (
        null, this.lblBalance, "Banking On It: Customer Information", JOptionPane.QUESTION_MESSAGE, this.iconBalance, null, ""
@@ -294,7 +351,7 @@ public class CustomerGUI extends BankingGUI {
       
       // if the user wishers to return to the home page
       if(balanceInputStatus.equals("return home")) {
-        return false;
+        return null;
       }
       // else if there's empty input
       else if(balanceInputStatus.equals("")) {
@@ -324,15 +381,15 @@ public class CustomerGUI extends BankingGUI {
       
     }
     
-    return true;
+    return balance;
     
   }
   
    /* Lays out the GUI to deposit an amount into the customer's balance
    * @param customer The customer to deposit the amount to
-   * @return Whether to continue
+   * @return The withdrawal amount
    */
-  private boolean layoutViewDeposit(Customer customer) {
+  public String layoutViewDeposit(Customer customer) {
     
     JLabel lblDeposit = new JLabel("Deposit: ");
     lblDeposit.setFont(super.font);
@@ -354,7 +411,7 @@ public class CustomerGUI extends BankingGUI {
       
       // if the user wishers to return to the home page
       if(depositInputStatus.equals("return home")) {
-        return false;
+        return null;
       }
       // else if there's empty input
       else if(depositInputStatus.equals("")) {
@@ -384,15 +441,15 @@ public class CustomerGUI extends BankingGUI {
       
     }
     
-    return true;
+    return deposit;
     
   }
   
    /* Lays out the GUI to withdraw an amount from the customer's balance
    * @param customer The customer to withdraw the amount from
-   * @return Whether to continue
+   * @return The withdrawal amount
    */
-  private boolean layoutViewWithdrawal(Customer customer) {
+  public String layoutViewWithdrawal(Customer customer) {
     
     JLabel lblWithdrawal = new JLabel("Withdrawal: ");
     lblWithdrawal.setFont(super.font);
@@ -416,7 +473,7 @@ public class CustomerGUI extends BankingGUI {
       
       // if the user wishers to return to the home page
       if(withdrawalInputStatus.equals("return home")) {
-        return false;
+        return null;
       }
       // else if there's empty input
       else if(withdrawalInputStatus.equals("")) {
@@ -442,21 +499,23 @@ public class CustomerGUI extends BankingGUI {
         );
       }
       
-      withdrawalInputStatus = this.controller.actionPerformedDeposit(withdrawal, customer);
+      withdrawalInputStatus = this.controller.actionPerformedWithdrawal(withdrawal, customer);
       
     }
     
-    return true;
+    return withdrawal;
     
   }
   
    /* Lays out the GUI to display a customer's information
    * @param customer The customer whose information to display
    */
-  private void displayViewInfo(Customer customer) {
+  public void layoutViewInfo(Customer customer) {
     
-    String display = customer.getName() + "\n" + super.formatPhone(customer.getPhoneNum()) + "\n"
-     + customer.getAddress() + "\n" + customer.getKey() + "\n" + customer.getBalance();
+    String display = "<html> Name: " + customer.getName() + "<br>Phone Number: " + 
+      super.formatPhone(customer.getPhoneNum()) + "<br>Address: "
+     + customer.getAddress() + "<br>Account Key: " + customer.getKey() + "<br>Account Balance: " + 
+      customer.getBalance() + "</html>";
     
     JLabel lblDisplay = new JLabel(display);
     lblDisplay.setFont(super.font);

@@ -48,6 +48,9 @@ public class AdminController {
       return false;
     }
     else if (response == 1) {
+      CustomerGUI customerView = new CustomerGUI(this.simulator);
+      CustomerController customerController = new CustomerController(customerView, this.simulator);
+      customerView.layoutViewCustomerPortal();
     }
     else {
       this.view.layoutViewCustomers();

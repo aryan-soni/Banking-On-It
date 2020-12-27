@@ -1,4 +1,4 @@
-/* ExisstCustomerController
+/* ExistCustomerController
 *  Controls user input when handling the input for customer information
 *  @author Aryan Soni
 */
@@ -50,7 +50,7 @@ public class CustomerController {
     else if (phone.trim().length() == 0) {
       return "";
     }
-    else if (!phone.matches("-?\\d+(\\.\\d+)?") || phone.length() != 10) {
+    else if (!phone.matches("[+-]?[0-9]+") || phone.length() != 10) {
       return "wrong";
     }
     else {
@@ -72,7 +72,7 @@ public class CustomerController {
     else if (value.trim().length() == 0) {
       return "";
     }
-    else if (!value.matches("^[a-zA-Z0-9]*$")) {
+    else if (!value.matches("^(?=.*[a-zA-Z])(?=.*[0-9])[A-Za-z0-9]+")) {
       return "wrong";
     }
     else {
@@ -129,7 +129,6 @@ public class CustomerController {
       {
         double parsedDeposit = Double.parseDouble(deposit.trim());
         if(parsedDeposit >= 0) {
-          customer.deposit(parsedDeposit);
           return "valid";      
         }
       }
@@ -171,7 +170,6 @@ public class CustomerController {
     }
     
     if(customer.isWithdrawalValid(parsedWithdrawal)) {
-      customer.withdraw(parsedWithdrawal);
       return "valid";
     }
     
@@ -179,24 +177,59 @@ public class CustomerController {
   
   }
  
-  /* Handles user input for the admin portal
+  /* Handles user input for the customer portal
    * @param response The user's response
-   * @return Whether the user wishes to continue
-
-  public boolean actionPerformedPortal (int response) {
+   * @param customer The customer whose information to modify
+   * @return Whether the user wishes to continue 
+  */
+  public boolean actionPerformedPortal (int response, Customer customer) {
     
-    if (response == 0) {
+    String userInput = " "; // default user input to string
+    
+    // Change key
+    if (response == 1) {
+      userInput = this.view.layoutViewCollectKey();
+      if (userInput != null) customer.setKey(userInput);
+    }
+    // Change address
+    else if (response == 2) {
+      userInput = this.view.layoutViewCollectAddress();
+      if (userInput != null) customer.setAddress(userInput);
+    }
+    // Change phone number
+    else if (response == 3) {
+      userInput = this.view.layoutViewCollectPhone();
+      if (userInput != null) customer.setPhoneNum(userInput);
+    }
+    // View account details
+    else if (response == 4) {
+      this.view.layoutViewInfo(customer);
+      return true;
+    }
+    // Withdrawal
+    else if (response == 5) {
+      userInput = this.view.layoutViewWithdrawal(customer);
+      if (userInput != null) customer.withdraw(Double.parseDouble(userInput));
+    }
+    // Deposit
+    else if (response == 6) {
+      userInput = this.view.layoutViewDeposit(customer);
+      if (userInput != null) customer.deposit(Double.parseDouble(userInput));
+    }
+    // Exit
+    else {
       return false;
     }
-    else if (response == 1) {
+    
+    if(userInput == null) {
+      return false;
     }
     else {
-      this.view.layoutViewCustomers();
+      this.simulator.updateDB();
+      this.view.layoutViewSuccess(customer); // inform user that action was successful
+      return true;
     }
-    
-    return true;
   
   }
-   */
   
 }

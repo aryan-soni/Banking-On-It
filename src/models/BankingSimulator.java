@@ -32,12 +32,12 @@ public class BankingSimulator {
     }
     
     // Sync customers from text file to ArrayList
-    while(this.in.hasNextLine()) {
-      String name = Cryptographer.decode(this.in.nextLine());
-      String phoneNum = Cryptographer.decode(this.in.nextLine());
-      String address = Cryptographer.decode(this.in.nextLine());
-      String key = Cryptographer.decode(this.in.nextLine());
-      double balance = Double.parseDouble(Cryptographer.decode(this.in.nextLine()));
+    while(this.in.hasNext()) {
+      String name = Cryptographer.decode(this.in.next());
+      String phoneNum = Cryptographer.decode(this.in.next());
+      String address = Cryptographer.decode(this.in.next());
+      String key = Cryptographer.decode(this.in.next());
+      double balance = Double.parseDouble(Cryptographer.decode(this.in.next()));
       this.customers.add(new Customer(name, phoneNum, address, key, balance));
     }
     
@@ -168,11 +168,13 @@ public class BankingSimulator {
       System.exit(1);
     }
     
-    out.println("\n" + Cryptographer.encode(name));
-    out.println(Cryptographer.encode(phoneNum));
-    out.println(Cryptographer.encode(address));
-    out.println(Cryptographer.encode(key));
-    out.print(Cryptographer.encode(Double.toString(balance)));
+    this.out.println(Cryptographer.encode(name));
+    this.out.println(Cryptographer.encode(phoneNum));
+    this.out.println(Cryptographer.encode(address));
+    this.out.println(Cryptographer.encode(key));
+    this.out.println(Cryptographer.encode(Double.toString(balance)));
+    
+    this.out.close();
     
   }
   
@@ -190,12 +192,14 @@ public class BankingSimulator {
     }
     
     for(Customer customer: this.customers) {
-          out.println("\n" + Cryptographer.encode(customer.getName()));
-          out.println(Cryptographer.encode(customer.getPhoneNum()));
-          out.println(Cryptographer.encode(customer.getAddress()));
-          out.println(Cryptographer.encode(customer.getKey()));
-          out.print(Cryptographer.encode(Double.toString(customer.getBalance())));
+          this.out.println("\n" + Cryptographer.encode(customer.getName()));
+          this.out.println(Cryptographer.encode(customer.getPhoneNum()));
+          this.out.println(Cryptographer.encode(customer.getAddress()));
+          this.out.println(Cryptographer.encode(customer.getKey()));
+          this.out.println(Cryptographer.encode(Double.toString(customer.getBalance())));
     }
+    
+    this.out.close();
     
   }
   
