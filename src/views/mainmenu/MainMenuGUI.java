@@ -32,7 +32,7 @@ public class MainMenuGUI extends BankingGUI {
             "Existing Customer",
             "New Customer"
         };
-        JLabel lblMain = new JLabel("<html>Welcome to Banking On It - the Ultimate Virtual ATM!<br><br>" +
+        JLabel lblMain = new JLabel("<html>Welcome to Banking On It — a Comprehensive Banking System!<br><br>" +
             "Please select whether you are a new/existing customer or administrator.<br><br>Click 'Exit' to exit.</html>"
         );
 

@@ -503,7 +503,7 @@ public class CustomerGUI extends BankingGUI {
         // method called will return a string indicating the validity of the input
         String withdrawalInputStatus = this.controller.actionPerformedWithdrawal(withdrawal, customer);
 
-        JLabel lblIncorrectWithdrawal = new JLabel("Error! Enter a withdrawal that is a number is >= " +
+        JLabel lblIncorrectWithdrawal = new JLabel("Error! Enter a withdrawal that is <= " +
             super.money.format(customer.getBalance()) + "!");
 
         lblIncorrectWithdrawal.setFont(super.font);
@@ -524,7 +524,7 @@ public class CustomerGUI extends BankingGUI {
                 );
 
                 withdrawal = (String) JOptionPane.showInputDialog(
-                    null, lblWithdrawal, "Banking On It: Banking On It: Customer Information", JOptionPane.QUESTION_MESSAGE,
+                    null, lblWithdrawal, "Banking On It: Customer Information", JOptionPane.QUESTION_MESSAGE,
                     this.iconBalance, null, ""
                 );
             }
