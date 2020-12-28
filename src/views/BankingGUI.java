@@ -32,8 +32,8 @@ public class BankingGUI {
         this.simulator.setGUI(this);
 
         // Configurate settings for UIManager
-        this.UI.put("OptionPane.background", Color.black);
-        this.UI.put("Panel.background", Color.black);
+        this.UI.put("OptionPane.background", new Color(66, 103, 178));
+        this.UI.put("Panel.background",new Color(66, 103, 178));
         UIManager.put("OptionPane.minimumSize", new Dimension(600, 175));
         this.UI.put("OptionPane.cancelButtonText", "Return");
 
