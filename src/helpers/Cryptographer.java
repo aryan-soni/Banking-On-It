@@ -1,63 +1,54 @@
-/*
-
-    NOTE: The sole purpose of this class is to supply the encode and decode methods to other classes.
-    This program SHOULD NOT be run on its own.
-
+/** Cryptographer
+*  Encodes and decodes customer information for a banking system
+*  @author Aryan Soni
 */
 
-// The "Cryptographer" class.
 public class Cryptographer {
-    public static void main(String[] args) {
-        // leave blank - main method will not be specifically called
-    } // main method
-
-
-    // NOTE: If encryption is to be performed, this method will be called
-    // encodes message
+  
+  /** Encodes a customer's information 
+    * @prompt mssg The message to encode
+    * @return The encoded information
+    */
     public static String encode(String mssg) {
-        String encrypted = ""; // store encrypted message, default to empty string
+      
+      String encrypted = "";
 
-        // parse through reversed string (want to reverse string to tighten encryption)
+        // parse through reversed string ( reverse string to tighten encryption)
         for (int i = mssg.length() - 1; i >= 0; i--) {
-            char selected = mssg.charAt(i); // set value for selected character
+          
+            char selected = mssg.charAt(i);
 
-            // if char selected is a valid char (use isValid method)
             if (isValid(selected)) {
-                // method encrypt will encrypt letter using ascii representation of letter/number
-                // add encrypted letter/number to the encrypted message
                 encrypted += encrypt((int) selected);
 
             }
-            // else - character selected is not a valid char
             else {
-                // make no changes, simply add existing char to output
                 encrypted += selected;
             }
         }
 
-        return encrypted; // return the encrypted message
+        return encrypted;
     }
 
 
-    // NOTE: If decryption is to be performed, this method will be called
-    // decodes message
+  /** Decodes a customer's information 
+    * @prompt mssg The message to decode
+    * @return The decoded information
+    */
     public static String decode(String mssg) {
-        String decrypted = ""; // store decrypted message, defualt to empty string
+      
+        String decrypted = "";
 
         // reverse string when parsing (already reversed to encrypt, so essentially reverting to original)
         for (int i = mssg.length() - 1; i >= 0; i--) {
-            char selected = mssg.charAt(i); // isolate the selected char
+          
+            char selected = mssg.charAt(i);
 
-            // if the char selected is a valid char (use isValid method)
             if (isValid(selected)) {
-                // method decrypt will decrypt letter using ascii representation of letter
-                // add decrypted letter to decrypted message
                 decrypted += decrypt((int) selected);
 
             }
-            // else - character selected is not a valid char
             else {
-                // make no changes, simply add existing char to output
                 decrypted += selected;
             }
         }
@@ -66,35 +57,41 @@ public class Cryptographer {
     }
 
 
-    // determines if the char inputted is valid
+    /** Checks if a character is alphanumeric
+      * @prompt selected The character to examine
+      * @return Whether the character is valid to encrypt (i.e. whether it is alphanumeric)
+      */
     public static boolean isValid(char selected) {
-        int ascii = (int) selected; // store the ascii representation of the selected char
+      
+        int ascii = (int) selected;
 
         // if ascii is in range of A-Z or a-z
         if ((ascii >= 65 && ascii <= 90) || (ascii >= 97 && ascii <= 122)) {
-            return true; // return true
+            return true;
         }
         // else if ascii is a number
         else if (ascii >= 48 && ascii <= 57) {
-            return true; // return true
+            return true;
         }
         // else if ascii is a symbol that is utilized by the encryption key
         else if (ascii >= 33 && ascii <= 42) {
-            return true; // return true
+            return true;
         }
 
-        return false; // method will revert to returning false at this point
+        return false;
 
     }
 
-
-    // encrypts char, taking in ascii representation of char
-    // key is essentially an equation
+    /** Encrypts a character using the ascii representation of the character
+      * @prompt ascii The ascii of the char
+      * @return The encrypted char
+      */
     public static String encrypt(int ascii) {
-        int newAscii; // will store ascii value of encrypted char
-        newAscii = ascii; // default to the ascii value of the original char
+      
+        int newAscii; // ascii value of encrypted char
+        newAscii = ascii; 
 
-        String newChar; // will store the ascii of the original char converted to a letter/number/symbol
+        String newChar; // ascii of the original char converted to a letter/number/symbol
 
         // if letter is upper case
         if (ascii >= 65 && ascii <= 90) {
@@ -154,15 +151,16 @@ public class Cryptographer {
             newAscii -= 15;
         }
 
-        // convert newAscii to char, then convert char to String
         newChar = Character.toString((char)(newAscii));
 
-        return newChar; // return new char
+        return newChar;
     }
 
 
-    // decrypts char, taking in ascii representation of char
-    // essentially reverse operation of encrypt
+    /** Decrypts a character using the ascii representation of the character
+      * @prompt ascii The ascii of the char
+      * @return The decrypted char
+      */
     public static String decrypt(int ascii) {
         int newAscii; // will store ascii value of decrypted letter/number
         newAscii = ascii; // default to ascii value of the encrypted char
@@ -222,10 +220,9 @@ public class Cryptographer {
             newAscii = 48 + 9 - (ascii - 48); // add 48 to convert it back to an ascii
         }
 
-        // convert newAscii to char, then convert char to String
         newChar = Character.toString((char)(newAscii));
 
-        return newChar; // return new char
+        return newChar;
 
     }
 } // Cryptographer class
