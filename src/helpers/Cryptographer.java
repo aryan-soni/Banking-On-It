@@ -1,28 +1,27 @@
 /** Cryptographer
-*  Encodes and decodes customer information for a banking system
-*  @author Aryan Soni
-*/
+ *  Encodes and decodes customer information for a banking system
+ *  @author Aryan Soni
+ */
 
 public class Cryptographer {
-  
-  /** Encodes a customer's information 
-    * @prompt mssg The message to encode
-    * @return The encoded information
-    */
+
+    /** Encodes a customer's information 
+     * @prompt mssg The message to encode
+     * @return The encoded information
+     */
     public static String encode(String mssg) {
-      
-      String encrypted = "";
+
+        String encrypted = "";
 
         // parse through reversed string ( reverse string to tighten encryption)
         for (int i = mssg.length() - 1; i >= 0; i--) {
-          
+
             char selected = mssg.charAt(i);
 
             if (isValid(selected)) {
                 encrypted += encrypt((int) selected);
 
-            }
-            else {
+            } else {
                 encrypted += selected;
             }
         }
@@ -31,24 +30,23 @@ public class Cryptographer {
     }
 
 
-  /** Decodes a customer's information 
-    * @prompt mssg The message to decode
-    * @return The decoded information
-    */
+    /** Decodes a customer's information 
+     * @prompt mssg The message to decode
+     * @return The decoded information
+     */
     public static String decode(String mssg) {
-      
+
         String decrypted = "";
 
         // reverse string when parsing (already reversed to encrypt, so essentially reverting to original)
         for (int i = mssg.length() - 1; i >= 0; i--) {
-          
+
             char selected = mssg.charAt(i);
 
             if (isValid(selected)) {
                 decrypted += decrypt((int) selected);
 
-            }
-            else {
+            } else {
                 decrypted += selected;
             }
         }
@@ -58,11 +56,11 @@ public class Cryptographer {
 
 
     /** Checks if a character is alphanumeric
-      * @prompt selected The character to examine
-      * @return Whether the character is valid to encrypt (i.e. whether it is alphanumeric)
-      */
+     * @prompt selected The character to examine
+     * @return Whether the character is valid to encrypt (i.e. whether it is alphanumeric)
+     */
     public static boolean isValid(char selected) {
-      
+
         int ascii = (int) selected;
 
         // if ascii is in range of A-Z or a-z
@@ -83,13 +81,13 @@ public class Cryptographer {
     }
 
     /** Encrypts a character using the ascii representation of the character
-      * @prompt ascii The ascii of the char
-      * @return The encrypted char
-      */
+     * @prompt ascii The ascii of the char
+     * @return The encrypted char
+     */
     public static String encrypt(int ascii) {
-      
+
         int newAscii; // ascii value of encrypted char
-        newAscii = ascii; 
+        newAscii = ascii;
 
         String newChar; // ascii of the original char converted to a letter/number/symbol
 
@@ -158,9 +156,9 @@ public class Cryptographer {
 
 
     /** Decrypts a character using the ascii representation of the character
-      * @prompt ascii The ascii of the char
-      * @return The decrypted char
-      */
+     * @prompt ascii The ascii of the char
+     * @return The decrypted char
+     */
     public static String decrypt(int ascii) {
         int newAscii; // will store ascii value of decrypted letter/number
         newAscii = ascii; // default to ascii value of the encrypted char
