@@ -36,6 +36,8 @@ public class BankingGUI {
         this.UI.put("Panel.background",new Color(66, 103, 178));
         UIManager.put("OptionPane.minimumSize", new Dimension(600, 175));
         this.UI.put("OptionPane.cancelButtonText", "Return");
+        UIManager.put("OptionPane.messageFont", new Font("Futura", Font.PLAIN, 14));
+        UIManager.put("OptionPane.buttonFont", new Font("Futura", Font.PLAIN, 14));
 
         this.font = new Font("Futura", Font.PLAIN, 16);
 
