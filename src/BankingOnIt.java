@@ -20,6 +20,8 @@ public class BankingOnIt
     MainMenuGUI mainMenu = new MainMenuGUI(simulator);
     
     mainMenu.layoutView();
+    
+    System.exit(0);
 
     // set up the JFrame 
     JFrame frame = new JFrame("Banking On It: Banking Simulator");

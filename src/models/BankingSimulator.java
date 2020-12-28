@@ -32,12 +32,12 @@ public class BankingSimulator {
     }
     
     // Sync customers from text file to ArrayList
-    while(this.in.hasNext()) {
-      String name = Cryptographer.decode(this.in.next());
-      String phoneNum = Cryptographer.decode(this.in.next());
-      String address = Cryptographer.decode(this.in.next());
-      String key = Cryptographer.decode(this.in.next());
-      double balance = Double.parseDouble(Cryptographer.decode(this.in.next()));
+    while(this.in.hasNextLine()) {
+      String name = Cryptographer.decode(this.in.nextLine());
+      String phoneNum = Cryptographer.decode(this.in.nextLine());
+      String address = Cryptographer.decode(this.in.nextLine());
+      String key = Cryptographer.decode(this.in.nextLine());
+      double balance = Double.parseDouble(Cryptographer.decode(this.in.nextLine()));
       this.customers.add(new Customer(name, phoneNum, address, key, balance));
     }
     
@@ -75,9 +75,9 @@ public class BankingSimulator {
     String pivot = arrList.get(end).getName();
     int i = start - 1;
     
-    for(int j = 0; j < end; j++) {
+    for(int j = start; j < end; j++) {
       // if the name for Customer j is lower in the alphabet versus the name of the pivot
-      if(arrList.get(j).getName().compareToIgnoreCase(pivot) <= 0) {
+      if(arrList.get(j).getName().compareToIgnoreCase(pivot) < 0) {
         i++;
         
         Collections.swap(arrList, i, j);
@@ -116,11 +116,11 @@ public class BankingSimulator {
       }
       
       else if (selectedCustomer.getName().compareToIgnoreCase(name) < 0) {
-        high = mid - 1;
+        low = mid + 1;
       }
       
       else {
-        low = mid + 1;
+        high = mid - 1;
       }
     }
     
@@ -152,29 +152,13 @@ public class BankingSimulator {
     * @param key The customer's account key
     * @param balance The customer's account balance
     */
-  private void addCustomer(String name, String phoneNum, String address, String key, double balance) {
+  public void addCustomer(String name, String phoneNum, String address, String key, double balance) {
     
     // Add customer to ArrayList
     Customer newCustomer = new Customer(name, phoneNum, address, key, balance);
     this.customers.add(newCustomer);
-    this.quickSort(this.customers, 0, this.customers.size() - 1);
     
-    // Add customer's encrypted details to text file
-    try {
-      this.out = new PrintWriter(this.file); 
-    }
-    catch (FileNotFoundException ex) {
-      System.out.println(ex.getMessage() + "in" + System.getProperty("user.dir"));
-      System.exit(1);
-    }
-    
-    this.out.println(Cryptographer.encode(name));
-    this.out.println(Cryptographer.encode(phoneNum));
-    this.out.println(Cryptographer.encode(address));
-    this.out.println(Cryptographer.encode(key));
-    this.out.println(Cryptographer.encode(Double.toString(balance)));
-    
-    this.out.close();
+    this.updateDB(); // Update the database
     
   }
   
@@ -192,7 +176,7 @@ public class BankingSimulator {
     }
     
     for(Customer customer: this.customers) {
-          this.out.println("\n" + Cryptographer.encode(customer.getName()));
+          this.out.println(Cryptographer.encode(customer.getName()));
           this.out.println(Cryptographer.encode(customer.getPhoneNum()));
           this.out.println(Cryptographer.encode(customer.getAddress()));
           this.out.println(Cryptographer.encode(customer.getKey()));

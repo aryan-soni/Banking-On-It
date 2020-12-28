@@ -32,18 +32,19 @@ public class MainMenuController {
      }
      // else if the user selects existing customer
      else if (response == 2) {
-       System.out.println("Hi");
        CustomerGUI customerView = new CustomerGUI(this.simulator);
        CustomerController customerController = new CustomerController(customerView, this.simulator);
-       customerView.layoutViewCustomerPortal();
+       customerView.layoutViewExistingCustomerPortal();
      }
-     // else if user selects help
+     // else if user selects new customer
      else if (response == 3) {
-
+       CustomerGUI customerView = new CustomerGUI(this.simulator);
+       CustomerController customerController = new CustomerController(customerView, this.simulator);
+       customerView.layoutViewNewCustomerPortal();
      }
      // else - user selects exit or x button is clicked
      else {
-
+       return false;
      }
      
      return true;

@@ -59,8 +59,8 @@ public class CustomerGUI extends BankingGUI {
     
   }
   
-  /* Lays out the GUI for the Customer Portal */
-  public void layoutViewCustomerPortal() {
+  /* Lays out the GUI for the Existing Customer Portal */
+  public void layoutViewExistingCustomerPortal() {
     
     JLabel lblCustomerNotFound = new JLabel("Customer Not Found!");
     lblCustomerNotFound.setFont(super.font);
@@ -106,12 +106,57 @@ public class CustomerGUI extends BankingGUI {
     
   }
   
-  /* Lays out the GUI to inform a customer that the action they performed was successful 
-   * @param customer The customer whose action was successful
-   */
-  public void layoutViewSuccess(Customer customer) {
+  /* Lays out the GUI for the New Customer Portal */
+  public void layoutViewNewCustomerPortal() {
     
-    JLabel lblInfo = new JLabel("Information Updated for: " + customer.getName() + "!");
+    JLabel lblCustomerExists = new JLabel("Customer Already Exists!");
+    lblCustomerExists.setFont(super.font);
+    lblCustomerExists.setForeground(Color.white);
+    
+    int customerIndex = 0;
+    
+    String name, phone, address, key, balance;
+    double balanceParsed;
+    
+    do {
+      
+      name = this.layoutViewCollectName();
+      if(name == null) return;
+  
+      phone = this.layoutViewCollectPhone();
+      if(phone == null) return;
+      
+      address = this.layoutViewCollectAddress();
+      if(address == null) return;
+    
+      key = this.layoutViewCollectKey();
+      if(key == null) return;
+      
+      balance = this.layoutViewCollectBalance();
+      if(balance == null) return;
+      balanceParsed = Double.parseDouble(balance);
+      
+      customerIndex = super.simulator.getCustomer(name, key);
+      
+      if(customerIndex >= 0) {
+        JOptionPane.showMessageDialog(null, lblCustomerExists, "Banking On It: New Customer - ERROR!", 
+           JOptionPane.ERROR_MESSAGE, super.iconError);
+      }
+    
+    } while (customerIndex >= 0);
+    
+    super.simulator.addCustomer(name, phone, address, key, balanceParsed);
+    
+    this.layoutViewSuccess(name);
+    
+  }
+  
+  /* Lays out the GUI to inform a customer that the action they performed was successful 
+   * @param name The name of the customer whose action was successful
+   */
+  public void layoutViewSuccess(String name) {
+    
+    JLabel lblInfo = new JLabel("Information Updated for: " + name + "!");
     lblInfo.setFont(super.font);
     lblInfo.setForeground(Color.white);
     
@@ -208,7 +253,7 @@ public class CustomerGUI extends BankingGUI {
            this.iconPhone, null, ""
         );
       }
-      // else if the name does not contain letters part of the alphabet
+      // else if the phone number is invalid
       else if(!phoneInputStatus.equals("valid")) {
         
         JOptionPane.showMessageDialog (
@@ -238,7 +283,7 @@ public class CustomerGUI extends BankingGUI {
     );
     
     // method called will return a string indicating the validity of the input
-    String addressInputStatus = this.controller.actionPerformedAlphaNum(address);
+    String addressInputStatus = this.controller.actionPerformedAddress(address);
     
     // controller will continue to validate input until the correct input is inputted
     while (!addressInputStatus.equals("valid")) {
@@ -259,19 +304,8 @@ public class CustomerGUI extends BankingGUI {
            this.iconAddress, null, ""
         );
       }
-      // else if the name does not contain letters part of the alphabet
-      else if(!addressInputStatus.equals("valid")) {
-        
-        JOptionPane.showMessageDialog (
-           null, this.lblAlphaNum, "Banking On It: Customer Information - ERROR!", JOptionPane.ERROR_MESSAGE, super.iconError
-        );
-        
-        address = (String) JOptionPane.showInputDialog (
-           null, this.lblAddress, "Banking On It: Customer Information", JOptionPane.QUESTION_MESSAGE, this.iconAddress, null, ""
-        );
-      }
       
-      addressInputStatus = this.controller.actionPerformedAlphaNum(address);
+      addressInputStatus = this.controller.actionPerformedAddress(address);
       
     }
     
@@ -310,7 +344,7 @@ public class CustomerGUI extends BankingGUI {
            super.iconKey, null, ""
         );
       }
-      // else if the name does not contain letters part of the alphabet
+      // else if the key is not alphanumeric
       else if(!keyInputStatus.equals("valid")) {
         
         JOptionPane.showMessageDialog (
@@ -365,7 +399,7 @@ public class CustomerGUI extends BankingGUI {
            this.iconBalance, null, ""
         );
       }
-      // else if the name does not contain letters part of the alphabet
+      // else if the balance is invalid
       else if(!balanceInputStatus.equals("valid")) {
         
         JOptionPane.showMessageDialog (
@@ -425,7 +459,7 @@ public class CustomerGUI extends BankingGUI {
            this.iconBalance, null, ""
         );
       }
-      // else if the name does not contain letters part of the alphabet
+      // else if the deposit is invalid
       else if(!depositInputStatus.equals("valid")) {
         
         JOptionPane.showMessageDialog (
@@ -487,7 +521,7 @@ public class CustomerGUI extends BankingGUI {
            this.iconBalance, null, ""
         );
       }
-      // else if the name does not contain letters part of the alphabet
+      // else if the withdrawal is invalid
       else if(!withdrawalInputStatus.equals("valid")) {
         
         JOptionPane.showMessageDialog (
@@ -515,7 +549,7 @@ public class CustomerGUI extends BankingGUI {
     String display = "<html> Name: " + customer.getName() + "<br>Phone Number: " + 
       super.formatPhone(customer.getPhoneNum()) + "<br>Address: "
      + customer.getAddress() + "<br>Account Key: " + customer.getKey() + "<br>Account Balance: " + 
-      customer.getBalance() + "</html>";
+      super.money.format(customer.getBalance()) + "</html>";
     
     JLabel lblDisplay = new JLabel(display);
     lblDisplay.setFont(super.font);
@@ -526,27 +560,5 @@ public class CustomerGUI extends BankingGUI {
      );
     
   }
-  
-  /* Lays out the GUI for the admin portal
-  public void layoutViewPortal() {
-    
-    String adminOptions[] = {"Log-Out", "Modify a Customer's Information", "View All Customers"};
-    
-    int response = 0;
-    
-    // controller will ensure that the portal continues to be displayed until the user wishes to exit
-    // controller will also handle the user input
-    do {
-      
-       // prompt user to choose option - store response into var
-       response = JOptionPane.showOptionDialog (
-          null, super.lblAction, "Banking On It - Admin Portal", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, 
-          super.iconUnlock, adminOptions, adminOptions[0]
-       );
-      
-    } while (this.controller.actionPerformedPortal(response));
-    
-  }
-  */
 
 }

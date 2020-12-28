@@ -29,7 +29,7 @@ public class CustomerController {
     else if (name.trim().length() == 0) {
       return "";
     }
-    else if (!name.matches("^[a-zA-Z]*$")) {
+    else if (!name.replaceAll("\\s+", "").matches("^[a-zA-Z]*$")) {
       return "wrong";
     }
     else {
@@ -50,7 +50,7 @@ public class CustomerController {
     else if (phone.trim().length() == 0) {
       return "";
     }
-    else if (!phone.matches("[+-]?[0-9]+") || phone.length() != 10) {
+    else if (!phone.replaceAll("\\s+", "").matches("[+-]?[0-9]+") || phone.length() != 10) {
       return "wrong";
     }
     else {
@@ -58,8 +58,26 @@ public class CustomerController {
     }
   
   }
-
   
+
+  /* Handles user input when an address must be entered
+   * @param address The address inputted 
+   * @return The status of the input
+   * */
+  public String actionPerformedAddress (String value) {
+    
+    if (value == null) {
+      return "return home";
+    }
+    else if (value.trim().length() == 0) {
+      return "";
+    }
+    else {
+      return "valid";
+    }
+  
+  }
+
   /* Handles user input when an alpha-numeric value must be entered
    * @param value The String inputted 
    * @return The status of the input
@@ -72,7 +90,7 @@ public class CustomerController {
     else if (value.trim().length() == 0) {
       return "";
     }
-    else if (!value.matches("^(?=.*[a-zA-Z])(?=.*[0-9])[A-Za-z0-9]+")) {
+    else if (!value.replaceAll("\\s+", "").matches("^(?=.*[a-zA-Z])(?=.*[0-9])[A-Za-z0-9]+")) {
       return "wrong";
     }
     else {
@@ -226,7 +244,7 @@ public class CustomerController {
     }
     else {
       this.simulator.updateDB();
-      this.view.layoutViewSuccess(customer); // inform user that action was successful
+      this.view.layoutViewSuccess(customer.getName()); // inform user that action was successful
       return true;
     }
   
