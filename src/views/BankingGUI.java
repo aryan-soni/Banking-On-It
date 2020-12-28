@@ -15,7 +15,6 @@ public class BankingGUI {
 
     protected UIManager UI = new UIManager();
 
-
     protected ImageIcon iconKey, iconError, iconUnlock;
 
     protected JLabel lblEmpty, lblAction;
@@ -38,7 +37,7 @@ public class BankingGUI {
         UIManager.put("OptionPane.minimumSize", new Dimension(600, 175));
         this.UI.put("OptionPane.cancelButtonText", "Return");
 
-        this.font = new Font("Monospaced", Font.BOLD, 16);
+        this.font = new Font("Futura", Font.PLAIN, 16);
 
         this.iconKey = new ImageIcon("views/imgs/key.png");
         this.iconError = new ImageIcon("views/imgs/error.png");
