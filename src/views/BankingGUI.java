@@ -13,13 +13,13 @@ public class BankingGUI {
 
     protected BankingSimulator simulator;
 
-    protected UIManager UI = new UIManager();
+    UIManager UI = new UIManager();
+    Color orange = new Color(255, 140, 0);
+    protected Font font = new Font("Futura", Font.PLAIN, 16);
 
     protected ImageIcon iconKey, iconError, iconUnlock;
 
     protected JLabel lblEmpty, lblAction;
-
-    protected Font font;
 
     protected NumberFormat money;
 
@@ -32,14 +32,12 @@ public class BankingGUI {
         this.simulator.setGUI(this);
 
         // Configurate settings for UIManager
-        this.UI.put("OptionPane.background", new Color(66, 103, 178));
-        this.UI.put("Panel.background",new Color(66, 103, 178));
+        this.UI.put("OptionPane.background", orange);
+        this.UI.put("Panel.background", orange);
         UIManager.put("OptionPane.minimumSize", new Dimension(600, 175));
         this.UI.put("OptionPane.cancelButtonText", "Return");
         UIManager.put("OptionPane.messageFont", new Font("Futura", Font.PLAIN, 14));
         UIManager.put("OptionPane.buttonFont", new Font("Futura", Font.PLAIN, 14));
-
-        this.font = new Font("Futura", Font.PLAIN, 16);
 
         this.iconKey = new ImageIcon("views/imgs/key.png");
         this.iconError = new ImageIcon("views/imgs/error.png");

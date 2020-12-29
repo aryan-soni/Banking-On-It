@@ -45,7 +45,7 @@ public class MainMenuGUI extends BankingGUI {
             // prompt user to choose option - store response into var
             int response = JOptionPane.showOptionDialog(
                 null, lblMain, "Banking On It - Home Page", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
-                iconBank, options, options[0]
+                iconBank, options, null
             );
 
             // call method that processes the user input; break out of loop if user wishes to exit
