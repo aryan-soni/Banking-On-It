@@ -6,7 +6,7 @@ Banking On It is a full-stack banking system that provides a comprehensive and s
 
 ![](demo.gif)
 
-## Game Features
+## Application Features
 
 **New Customers**: New Customers can create an account by inputting their name, phone number, address, account key, and account balance. There is constant input validation to ensure the data is formatted consistently across all customers. A New Customer can only be created if an Existing Customer does not already possess the same name and account key. Once a New Customer is created, their encrypted information is stored in the application custom database (a text file); this information can be accessed in future user sessions.
 
